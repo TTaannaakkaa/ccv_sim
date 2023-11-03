@@ -81,38 +81,36 @@ void ccvSim::process(void)
                 if(mode == 0)
                 {
                     v = joy_.axes[L_STICK_V_]*MAX_VELOCITY_;
-                    w = joy_.axes[L_STICK_H_]*MAX_ANGULAR_VELOCITY_;
-                    double r_h = joy_.axes[R_STICK_H_];
-                    double r_v = joy_.axes[R_STICK_V_];
+                    w = joy_.axes[R_STICK_H_]*MAX_ANGULAR_VELOCITY_;
+                    // double r_h = joy_.axes[R_STICK_H_];
+                    // double r_v = joy_.axes[R_STICK_V_];
                     double stick_angle = 0;
-                    if(sqrt(r_h*r_h + r_v*r_v) > 0.5) stick_angle = atan2(r_v, r_h);
-                    direction = stick_angle/2.0;
+                    // if(sqrt(r_h*r_h + r_v*r_v) > 0.5) stick_angle = atan2(r_v, r_h);
+                    // direction = stick_angle/2.0;
                 }
                 else if(mode == 1)
                 {
                     v = joy_.axes[L_STICK_V_] * MAX_VELOCITY_;
                     w = joy_.axes[L_STICK_H_] * MAX_ANGULAR_VELOCITY_;
+                    double r_h = joy_.axes[R_STICK_H_];
+                    double r_v = joy_.axes[R_STICK_V_];
+                    double stick_angle = 0;
+                    if(sqrt(r_h * r_h + r_v * r_v) > 0.5){
+                        stick_angle = atan2(r_h, r_v);
+                    }
+                    // std::cout << joy.axes[R_STICK_H] << ", " << joy.axes[R_STICK_V] << std::endl;
+                    // std::cout << stick_angle << std::endl;
+                    direction = stick_angle / 2.0;
                 }
 
                 else if(mode == 2)
                 {
                     v = joy_.axes[L_STICK_V_] * MAX_VELOCITY_;
                     w = joy_.axes[L_STICK_H_] * MAX_ANGULAR_VELOCITY_;
-                    // if(joy_.buttons[L2_] && !joy_.buttons[R2_]){
-                    //     // w = 0.0;
-                    //     direction = MAX_STEERING_ANGLE_ * (1.0 - (joy_.axes[L2_STICK_] + 1.0) * 0.5);
-                    // }else if(joy_.buttons[R2_] && !joy_.buttons[L2_]){
-                    //     // w = 0.0;
-                    //     direction = -MAX_STEERING_ANGLE_ * (1.0 - (joy_.axes[L2_STICK_] + 1.0) * 0.5);
-                    // }else if(joy_.buttons[R2_] && joy_.buttons[L2_]){
-                    //     // std::cout << "brake" << std::endl;
-                    //     v = 0.0;
-                    //     w = 0.0;
-                    // }
-                    pitch = joy_.axes[R_STICK_V_] * MAX_PITCH_ANGLE_;
-                    pitch = std::max(-MAX_PITCH_ANGLE_, std::min(MAX_PITCH_ANGLE_, pitch));
-                    roll = joy_.axes[R_STICK_H_] * MAX_ROLL_ANGLE_;
-                    roll = std::max(-MAX_ROLL_ANGLE_, std::min(MAX_ROLL_ANGLE_, roll));
+                    pitch = -joy_.axes[R_STICK_V_] * MAX_PITCH_ANGLE_;
+                    // pitch = std::max(MAX_PITCH_ANGLE_, std::min(MAX_PITCH_ANGLE_, pitch));
+                    roll = -joy_.axes[R_STICK_H_] * MAX_ROLL_ANGLE_;
+                    // roll = std::max(MAX_ROLL_ANGLE_, std::min(MAX_ROLL_ANGLE_, roll));
                 }
 
                 direction = std::max(-MAX_STEERING_ANGLE_, std::min(MAX_STEERING_ANGLE_, direction));
