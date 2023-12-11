@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- <include file="$(find sq2_ccv_description)/launch/gazebo.launch"/> -->
+    <node name="joy" pkg="joy" type="joy_node" />
+    <node name="ccv_sim" pkg="ccv_sim" type="ccv_sim_node" output="screen">
+        <!-- <remap from="/cmd_vel" to="/sq2_ccv/diff_drive_steering_controller/cmd_vel"/> -->
+        <!-- <remap from="/roll_pitch" to ="/sq2_ccv/roll_pitch_controller/roll_pitch"/> -->
+    </node>
+</launch>

@@ -7,8 +7,8 @@ ccvSim::ccvSim(void) : local_nh_("~")
     local_nh_.param<double>("MAX_VELOCITY", MAX_VELOCITY_, {3.0});
     local_nh_.param<double>("MAX_ANGULAR_VELOCITY", MAX_ANGULAR_VELOCITY_, {M_PI});
     local_nh_.param<double>("MAX_STEERING_ANGLE", MAX_STEERING_ANGLE_, {20*M_PI/180});
-    local_nh_.param<double>("MAX_PITCH_ANGLE", MAX_PITCH_ANGLE_, {M_PI/6});
-    local_nh_.param<double>("MAX_ROLL_ANGLE", MAX_ROLL_ANGLE_, {M_PI/6});
+    local_nh_.param<double>("MAX_PITCH_ANGLE", MAX_PITCH_ANGLE_, {M_PI/10});
+    local_nh_.param<double>("MAX_ROLL_ANGLE", MAX_ROLL_ANGLE_, {M_PI/10});
     local_nh_.param<double>("PITCH_OFFSET", PITCH_OFFSET_, 0.0);
     local_nh_.param<double>("STEER_R_OFFSET", STEER_R_OFFSET_, {3.25*M_PI/180});
     local_nh_.param<double>("STEER_L_OFFSET", STEER_L_OFFSET_, 0.0);
